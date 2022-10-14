@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+// import React, {Component} from 'react' // не используемый компонент! проврить
 import {Table, Button} from 'react-bootstrap';
 
 const TableHeader = () => {
@@ -12,7 +12,6 @@ const TableHeader = () => {
     </thead>
     )
   }
-  
 
 const TableBody = (props) => {
     const rows = props.characterData.map((row, index, age) => {
