@@ -1,38 +1,13 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from './Table';
-import { Button } from 'react-bootstrap';
+import Form from './Form';
+import {Container, Row, Col} from 'react-bootstrap';
 
 
 class App extends Component {
   state = {
-    characters: [
-      {
-        name: 'Charlie',
-        job: 'Janitor',
-        age: '21',
-      },
-      {
-        name: 'Mac',
-        job: 'Bouncer',
-        age: '28',
-      },
-      {
-        name: 'Dee',
-        job: 'Aspring actress',
-        age: '36',
-      },
-      {
-        name: 'Dennis',
-        job: 'Bartender',
-        age: '26',
-      },
-      {
-        name: 'Alex',
-        job: 'Programmer',
-        age: '29',
-      },
-    ]
+    characters: [],
   }
 
   removeCharacter = (index) => {
@@ -45,21 +20,32 @@ class App extends Component {
     })
   }
 
+  handleSubmit = (character) => {
+    this.setState({ characters: [...this.state.characters, character] })
+  }
+
   render() {
     const { characters } = this.state
 
     return (
-      <div className="container">
-        <h1 className="text-center mt-4 mb-4">To Do List</h1>
+
+      <Container className="container">
+          <Row className="justify-content-md-center">
+          <h1  className="text-center mt-4 mb-4">To Do List</h1>
+          </Row>
+      <Row className="justify-content-md-center">
+        <Col xs={12} md={8}>
+        <Form handleSubmit={this.handleSubmit} />
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center my-3">
+        <Col xs={12} md={8}>
         <Table 
         characterData={characters} 
         removeCharacter={this.removeCharacter}/>
-        <div id className="d-grid gap-2">
-      <Button variant="primary" size="lg">
-        Block button
-      </Button>
-      </div>
-      </div>
+        </Col>
+      </Row>
+      </Container>
     )
   }
 }
